@@ -1,4 +1,3 @@
-
 ---
 name: 🧩 Feature Request
 about: "For feature requests. Please search for existing issues first."
