@@ -54,7 +54,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Deploy to S3 if on develop branch and event is push
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: aws s3 sync ./build s3://checkflow.fr --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
