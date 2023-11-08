@@ -34,40 +34,24 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: '0'  # Fetch all history for all tags and branches
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5.6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: patch # Set to 'minor' or 'major' as needed
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14' # Set this to the node version you need
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: |
+            Changes in this Release
+            - Auto-incremented by GitHub Actions
 
-    - name: Install dependencies
-      run: npm install
-
-    - name: Bump version and push tag
-      id: tag_version
-      uses: mathieudutour/github-tag-action@v5.6
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        default_bump: patch # Set to 'minor' or 'major' as needed
-
-    - name: Create Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.tag_version.outputs.new_tag }}
-        release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-        body: |
-          Changes in this Release
-          - Auto-incremented by GitHub Actions
-        
       - name: Install AWS CLI
         run: sudo apt-get install awscli
 
@@ -77,10 +61,9 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Deploy to Development S3
-        if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
-        run: |
-          aws s3 sync ./build s3://checkflow.fr --delete
+      - name: Deploy to S3 if on develop branch and event is push
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: aws s3 sync ./build s3://yourbucketname --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
