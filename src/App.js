@@ -1,7 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
+
 import logo from "./assets/images/logo.svg";
 import text from "./assets/images/text.svg";
+
+import "./assets/styles/App.css";
 
 import { db } from "./config/firebase";
 import {
@@ -12,13 +15,12 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-import "./assets/styles/App.css";
-
 function App() {
   const [structureList, setStructureList] = useState([]);
 
   const structureCollectionRef = collection(db, "structure");
 
+  // Get all structures
   const getStructureList = () => {
     const unsubscribe = onSnapshot(structureCollectionRef, (querySnapshot) => {
       const updatedStructureList = [];
