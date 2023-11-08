@@ -33,30 +33,7 @@ jobs:
 
       - name: Build Project
         run: npm run build
-
-      - name: Tag Release
-        id: tagger
-        uses: actions/github-script@0.9.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const packageJson = require('./package.json');
-            const version = packageJson.version;
-            const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
-            const tagName = `v${version}`;
-            const releaseName = `Release ${tagName}`;
-            console.log(`Creating release ${releaseName}`);
-            const response = await github.repos.createRelease({
-              owner,
-              repo,
-              tag_name: tagName,
-              name: releaseName,
-              body: `Changes in this Release:\n- Your changelog here`,
-              draft: false,
-              prerelease: false
-            });
-            return response.data.tag_name;
-
+        
       - name: Install AWS CLI
         run: sudo apt-get install awscli
 
