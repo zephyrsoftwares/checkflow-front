@@ -34,24 +34,16 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v5.6
+      - name: Bump release version
+        id: bump_version
+        uses: christian-draeger/increment-semantic-version@1.1.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: patch # Set to 'minor' or 'major' as needed
+          current-version: '0.1.0' # also accepted: 'v2.11.7-alpha.3' | '2.11.7-alpha3'
+          version-fragment: 'feature'
+      - name: Do something with your bumped release version
+        run: echo ${{ steps.bump_version.outputs.next-version }}
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.tag_version.outputs.new_tag }}
-          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: |
-            Changes in this Release
-            - Auto-incremented by GitHub Actions
-
+        
       - name: Install AWS CLI
         run: sudo apt-get install awscli
 
