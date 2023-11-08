@@ -33,6 +33,14 @@ jobs:
 
       - name: Build Project
         run: npm run build
+        env:
+          FIREBASE_API_KEY_DEV: ${{ secrets.FIREBASE_API_KEY_DEV }}
+          FIREBASE_APP_ID_DEV: ${{ secrets.FIREBASE_APP_ID_DEV }}
+          FIREBASE_AUTH_DOMAIN_DEV: ${{ secrets.FIREBASE_AUTH_DOMAIN_DEV }}
+          FIREBASE_PROJECT_ID_DEV: ${{ secrets.FIREBASE_PROJECT_ID_DEV }}
+          FIREBASE_SENDER_ID_DEV: ${{ secrets.FIREBASE_SENDER_ID_DEV }}
+          FIREBASE_STORAGE_BUCKET_DEV: ${{ secrets.FIREBASE_STORAGE_BUCKET_DEV }}
+
 
       - name: Install AWS CLI
         run: sudo apt-get install awscli
