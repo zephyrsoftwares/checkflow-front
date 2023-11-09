@@ -41,7 +41,6 @@ jobs:
           REACT_APP_FIREBASE_SENDER_ID_DEV: ${{ secrets.FIREBASE_SENDER_ID_DEV }}
           REACT_APP_FIREBASE_STORAGE_BUCKET_DEV: ${{ secrets.FIREBASE_STORAGE_BUCKET_DEV }}
 
-
       - name: Install AWS CLI
         run: sudo apt-get install awscli
 
