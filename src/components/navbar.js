@@ -1,92 +1,261 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
+
+import { Dialog, Transition } from "@headlessui/react";
+import {
+  ChartSquareBarIcon,
+  FolderIcon,
+  GlobeAltIcon,
+  ServerIcon,
+  StatusOnlineIcon,
+  XIcon,
+} from "@heroicons/react/outline";
+
+import logo from "../assets/images/logo_white.svg";
+
+const navigation = [
+  { name: "Accueil", href: "/", icon: FolderIcon, current: false },
+  { name: "Engagement", href: "/", icon: ServerIcon, current: true },
+  {
+    name: "Activités",
+    href: "/activite",
+    icon: StatusOnlineIcon,
+    current: false,
+  },
+  { name: "Réglage", href: "/reglages", icon: GlobeAltIcon, current: false },
+  { name: "Usage", href: "#", icon: ChartSquareBarIcon, current: false },
+  { name: "Réglages", href: "/", icon: ChartSquareBarIcon, current: false },
+];
+const clients = [
+  { id: 1, name: "Crédit Suisse", href: "#", initial: "CS", current: false },
+  {
+    id: 2,
+    name: "Société Générale",
+    href: "#",
+    initial: "SG",
+    current: false,
+  },
+  { id: 3, name: "Bain & Co", href: "#", initial: "SS", current: false },
+];
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 const Navbar = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <div className="bg-gray-800">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="relative flex items-center justify-between h-16">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+    <>
+      <Transition.Root show={sidebarOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-50 xl:hidden"
+          onClose={setSidebarOpen}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="transition-opacity ease-linear duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition-opacity ease-linear duration-300"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-900/80" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 flex">
+            <Transition.Child
+              as={Fragment}
+              enter="transition ease-in-out duration-300 transform"
+              enterFrom="-translate-x-full"
+              enterTo="translate-x-0"
+              leave="transition ease-in-out duration-300 transform"
+              leaveFrom="translate-x-0"
+              leaveTo="-translate-x-full"
             >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="block h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <rect
-                  y="4"
-                  width="24"
-                  height="1"
-                  className="h-1 w-6 my-1 rounded-sm"
-                />
-                <rect
-                  y="11"
-                  width="24"
-                  height="1"
-                  className="h-1 w-6 my-1 rounded-sm"
-                />
-                <rect
-                  y="18"
-                  width="24"
-                  height="1"
-                  className="h-1 w-6 my-1 rounded-sm"
-                />
-              </svg>
-            </button>
+              <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-in-out duration-300"
+                  enterFrom="opacity-0"
+                  enterTo="opacity-100"
+                  leave="ease-in-out duration-300"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                >
+                  <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
+                    <button
+                      type="button"
+                      className="-m-2.5 p-2.5"
+                      onClick={() => setSidebarOpen(false)}
+                    >
+                      <span className="sr-only">Close sidebar</span>
+                      <XIcon
+                        className="h-6 w-6 text-white"
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </div>
+                </Transition.Child>
+                {/* Sidebar component, swap this element with another sidebar if you like */}
+                <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 ring-1 ring-white/10">
+                  <div className="flex h-16 shrink-0 items-center">
+                    <img
+                      className="h-8 w-auto"
+                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                      alt="Your Company"
+                    />
+                  </div>
+                  <nav className="flex flex-1 flex-col">
+                    <ul role="list" className="flex flex-1 flex-col gap-y-7">
+                      <li>
+                        <ul role="list" className="-mx-2 space-y-1">
+                          {navigation.map((item) => (
+                            <li key={item.name}>
+                              <a
+                                href={item.href}
+                                className={classNames(
+                                  item.current
+                                    ? "bg-gray-800 text-white"
+                                    : "text-gray-400 hover:text-white hover:bg-gray-800",
+                                  "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
+                                )}
+                              >
+                                <item.icon
+                                  className="h-6 w-6 shrink-0"
+                                  aria-hidden="true"
+                                />
+                                {item.name}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                      <li>
+                        <div className="text-xs font-semibold leading-6 text-gray-400">
+                          Vos clients
+                        </div>
+                        <ul role="list" className="-mx-2 mt-2 space-y-1">
+                          {clients.map((team) => (
+                            <li key={team.name}>
+                              <a
+                                href={team.href}
+                                className={classNames(
+                                  team.current
+                                    ? "bg-gray-800 text-white"
+                                    : "text-gray-400 hover:text-white hover:bg-gray-800",
+                                  "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
+                                )}
+                              >
+                                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">
+                                  {team.initial}
+                                </span>
+                                <span className="truncate">{team.name}</span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                      <li className="-mx-6 mt-auto">
+                        <a
+                          href="#"
+                          className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800"
+                        >
+                          <img
+                            className="h-8 w-8 rounded-full bg-gray-800"
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            alt=""
+                          />
+                          <span className="sr-only">Your profile</span>
+                          <span aria-hidden="true">Tom Cook</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
           </div>
-          <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex-shrink-0 flex items-center">
-              <img
-                className="block lg:hidden h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                alt="Workflow"
-              />
-              <img
-                className="hidden lg:block h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                alt="Workflow"
-              />
-            </div>
-            <div className="hidden sm:block sm:ml-6">
-              <div className="flex space-x-4">
-                <a
-                  href="#"
-                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Accueil
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-500 px-3 py-2 rounded-md text-sm font-medium opacity-50 cursor-not-allowed"
-                  disabled
-                >
-                  Équipe
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-500 px-3 py-2 rounded-md text-sm font-medium opacity-50 cursor-not-allowed"
-                  disabled
-                >
-                  Clients
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Support
-                </a>
-              </div>
-            </div>
+        </Dialog>
+      </Transition.Root>
+
+      {/* Static sidebar for desktop */}
+      <div className="hidden xl:fixed xl:inset-y-0 xl:z-50 xl:flex xl:w-72 xl:flex-col h-full">
+        {/* Sidebar component, swap this element with another sidebar if you like */}
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-black/10 px-6 ring-1 ring-white/5">
+          <div className="flex h-16 shrink-0 items-center justify-center">
+            <img className="h-8 w-auto" src={logo} alt="CheckFlow" />
           </div>
+          <nav className="flex flex-1 flex-col">
+            <ul role="list" className="flex flex-1 flex-col gap-y-7">
+              <li>
+                <ul role="list" className="-mx-2 space-y-1">
+                  {navigation.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className={classNames(
+                          item.current
+                            ? "bg-gray-800 text-white"
+                            : "text-gray-400 hover:text-white hover:bg-gray-800",
+                          "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
+                        )}
+                      >
+                        <item.icon
+                          className="h-6 w-6 shrink-0"
+                          aria-hidden="true"
+                        />
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+              <li>
+                <div className="text-xs font-semibold leading-6 text-gray-400">
+                  Vos clients
+                </div>
+                <ul role="list" className="-mx-2 mt-2 space-y-1">
+                  {clients.map((team) => (
+                    <li key={team.name}>
+                      <a
+                        href={team.href}
+                        className={classNames(
+                          team.current
+                            ? "bg-gray-800 text-white"
+                            : "text-gray-400 hover:text-white hover:bg-gray-800",
+                          "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold",
+                        )}
+                      >
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white">
+                          {team.initial}
+                        </span>
+                        <span className="truncate">{team.name}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+              <li className="-mx-6 mt-auto">
+                <a
+                  href="#"
+                  className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800"
+                >
+                  <img
+                    className="h-8 w-8 rounded-full bg-gray-800"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <span className="sr-only">Your profile</span>
+                  <span aria-hidden="true">Tom Cook</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

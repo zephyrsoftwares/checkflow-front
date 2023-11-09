@@ -5,7 +5,6 @@ import Connexion from "./pages/connexion";
 import Reglages from "./pages/reglages";
 import Accueil from "./pages/accueil";
 import NotFound from "./pages/not-found";
-import Navbar from "./components/navbar";
 
 const App = () => {
   return (
