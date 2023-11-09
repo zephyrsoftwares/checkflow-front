@@ -8,8 +8,8 @@ const deployments = [
     projectName: "PESR Fin d'année",
     teamName: "Bain & Co",
     status: "online",
-    statusText: "Initiated 1m 32s ago",
-    description: "Deploys from GitHub",
+    statusText: "Modifié il y a 1m 32s",
+    description: "Signé par Alcide FAUCHERON",
     environment: "Signé",
   },
   {
@@ -18,7 +18,7 @@ const deployments = [
     projectName: "DAE 2023",
     teamName: "Crédit Suisse",
     status: "online",
-    statusText: "Initiated 1m 32s ago",
+    statusText: "Modifié il y a 1m 32s",
     description: "Deploys from GitHub",
     environment: "En cours",
   },
@@ -28,8 +28,8 @@ const deployments = [
     projectName: "ios-app",
     teamName: "Planetaria",
     status: "offline",
-    statusText: "Initiated 1m 32s ago",
-    description: "Deploys from GitHub",
+    statusText: "Modifié il y a 1m 32s",
+    description: "Suspendu par Alcide FAUCHERON",
     environment: "Suspendu",
   },
   {
@@ -38,7 +38,7 @@ const deployments = [
     projectName: "ios-app",
     teamName: "Planetaria",
     status: "offline",
-    statusText: "Initiated 1m 32s ago",
+    statusText: "Modifié il y a 1m 32s",
     description: "Deploys from GitHub",
     environment: "Brouillon",
   },
@@ -49,8 +49,8 @@ const deployments = [
     projectName: "ios-app",
     teamName: "Planetaria",
     status: "error",
-    statusText: "Initiated 1m 32s ago",
-    description: "Deploys from GitHub",
+    statusText: "Modifié il y a 1m 32s",
+    description: "Signature en attente",
     environment: "En attente",
   },
 ];
@@ -92,7 +92,9 @@ const EngagementList = () => {
               </div>
               <h2 className="min-w-0 text-sm font-semibold leading-6 text-white">
                 <a href={deployment.href} className="flex gap-x-2">
-                  <span className="truncate">{deployment.teamName}</span>
+                  <span className="truncate font-light text-gray-200">
+                    {deployment.teamName}
+                  </span>
                   <span className="text-gray-400">/</span>
                   <span className="whitespace-nowrap">
                     {deployment.projectName}
