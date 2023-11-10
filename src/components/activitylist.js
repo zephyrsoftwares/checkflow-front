@@ -2,6 +2,7 @@ import React from "react";
 
 const activityItems = [
   {
+    id: 1,
     user: {
       name: "Ibrahim ADLANI",
       imageUrl: "https://avatars.githubusercontent.com/u/77414477?v=4",
@@ -13,6 +14,7 @@ const activityItems = [
     dateTime: "2023-01-23T11:00",
   },
   {
+    id: 2,
     user: {
       name: "Alcide FAUCHERON",
       imageUrl: "https://avatars.githubusercontent.com/u/58391011?v=4",
@@ -31,7 +33,7 @@ const ActivityList = () => {
     <ul role="list" className="divide-y divide-white/5">
       {activityItems.map((item) => (
         // ACTIVITÉ
-        <li key={item.commit} className="px-4 py-4 sm:px-6 lg:px-8">
+        <li key={item.id} className="px-4 py-4 sm:px-6 lg:px-8">
           {/* LIGNE SUPERIEURE */}
           <div className="flex items-center gap-x-3">
             {/* AVATAR */}

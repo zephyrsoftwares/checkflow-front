@@ -1,22 +1,14 @@
-import React, { Fragment } from "react";
-import { Menu, Transition } from "@headlessui/react";
-import { ServerIcon } from "@heroicons/react/outline";
-import {
-  MenuIcon,
-  ChevronRightIcon,
-  SelectorIcon,
-  SearchIcon,
-} from "@heroicons/react/solid";
+import React, { useState } from "react";
+import { MenuIcon, SearchIcon } from "@heroicons/react/solid";
+import PropTypes from "prop-types";
 
-import Navbar from "../components/navbar";
-
-const SearchBar = () => {
+const SearchBar = ({ setSidebarOpen }) => {
   return (
     <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/5 bg-gray-900 px-4 shadow-sm sm:px-6 lg:px-8">
       <button
         type="button"
         className="-m-2.5 p-2.5 text-white xl:hidden"
-        onClick={() => setSidebarOpen(true)}
+        onClick={() => setSidebarOpen((open) => !open)}
       >
         <span className="sr-only">Open sidebar</span>
         <MenuIcon className="h-5 w-5" aria-hidden="true" />
@@ -44,6 +36,10 @@ const SearchBar = () => {
       </div>
     </div>
   );
+};
+
+SearchBar.propTypes = {
+  setSidebarOpen: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

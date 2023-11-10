@@ -6,7 +6,10 @@ import EngagementList from "../components/engagementlist";
 export const EngagementSection = () => {
   return (
     <main className="lg:pr-96">
+      {/* HEADER */}
       <SectionHeader />
+
+      {/* LIST */}
       <EngagementList />
     </main>
   );

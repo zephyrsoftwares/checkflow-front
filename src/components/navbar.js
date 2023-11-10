@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from "react";
-
 import { Dialog, Transition } from "@headlessui/react";
 import {
   ChartSquareBarIcon,
@@ -11,6 +10,8 @@ import {
 } from "@heroicons/react/outline";
 
 import logo from "../assets/images/logo_white.svg";
+import NavbarMobile from "./navbarmobile";
+import PropTypes from "prop-types";
 
 const navigation = [
   { name: "Accueil", href: "/", icon: FolderIcon, current: false },
@@ -41,16 +42,20 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Navbar = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
+const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <>
-      <Transition.Root show={sidebarOpen} as={Fragment}>
+      <NavbarMobile
+        show={sidebarOpen}
+        as={Fragment}
+        navigation={navigation}
+        clients={clients}
+        setSidebarOpen={setSidebarOpen}
+      >
         <Dialog
           as="div"
           className="relative z-50 xl:hidden"
-          onClose={setSidebarOpen}
+          onClose={sidebarOpen}
         >
           <Transition.Child
             as={Fragment}
@@ -88,7 +93,7 @@ const Navbar = () => {
                     <button
                       type="button"
                       className="-m-2.5 p-2.5"
-                      onClick={() => setSidebarOpen(false)}
+                      onClick={() => setsidebar(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
                       <XIcon
@@ -178,7 +183,7 @@ const Navbar = () => {
             </Transition.Child>
           </div>
         </Dialog>
-      </Transition.Root>
+      </NavbarMobile>
 
       {/* Static sidebar for desktop */}
       <div className="hidden xl:fixed xl:inset-y-0 xl:z-50 xl:flex xl:w-72 xl:flex-col h-full">
@@ -260,6 +265,11 @@ const Navbar = () => {
       </div>
     </>
   );
+};
+
+Navbar.propTypes = {
+  sidebarOpen: PropTypes.bool.isRequired,
+  setSidebarOpen: PropTypes.func.isRequired,
 };
 
 export default Navbar;
