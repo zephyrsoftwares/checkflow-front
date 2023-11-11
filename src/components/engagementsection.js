@@ -1,13 +1,12 @@
 import React from "react";
 
-import SectionHeader from "../components/sectionheader";
-import EngagementList from "../components/engagementlist";
+import { EngagementList, SectionHeader } from "./index";
 
-export const EngagementSection = () => {
+const EngagementSection = () => {
   return (
     <main className="lg:pr-96">
       {/* HEADER */}
-      <SectionHeader />
+      <SectionHeader label={"Engagements"} link={"/activites"} />
 
       {/* LIST */}
       <EngagementList />

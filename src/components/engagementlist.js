@@ -1,5 +1,6 @@
 import React from "react";
-import EngagementListItem from "./engagementlistitem";
+
+import { EngagementListItem } from "./index";
 
 const deployments = [
   {

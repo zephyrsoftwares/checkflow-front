@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ChevronRightIcon } from "@heroicons/react/solid";
+import classNames from "../utils/classnames";
 
 const statuses = {
   offline: "text-gray-500 bg-gray-100/10",
@@ -14,10 +15,6 @@ const environments = {
   Signé: "text-green-400 bg-green-400/10 ring-green-400/30",
   En_attente: "text-amber-400 bg-amber-400/10 ring-amber-400/30",
 };
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 const EngagementListItem = ({ deployment }) => {
   return (
