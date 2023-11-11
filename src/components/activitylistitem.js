@@ -34,8 +34,8 @@ const ActivityListItem = ({ item }) => {
           {item.projectName}
         </span>{" "}
         {/* TARGET */}
-        <span className="font-mono text-gray-400">{item.commit}</span> on{" "}
-        <span className="text-gray-400">{item.branch}</span>
+        <span className="font-mono text-gray-400">({item.commit}</span> on{" "}
+        <span className="text-gray-400">{item.branch})</span>
       </p>
     </li>
   );
