@@ -6,7 +6,7 @@ const NavbarItem = ({ item }) => {
   return (
     <li key={item.id} className="mt-1">
       <a
-        href={item.link}
+        href={item.href}
         className={classNames(
           item.current
             ? "bg-gray-800 text-white"
