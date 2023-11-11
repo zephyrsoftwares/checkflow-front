@@ -21,7 +21,7 @@ const navigation = [
   },
   {
     id: 2,
-    name: "Engagement",
+    name: "Engagements",
     href: "/",
     icon: FolderIcon,
     current: true,
@@ -45,7 +45,7 @@ const navigation = [
   },
   {
     id: 5,
-    name: "Réglage",
+    name: "Réglages",
     href: "/reglages",
     icon: CogIcon,
     current: false,
