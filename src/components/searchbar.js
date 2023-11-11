@@ -34,7 +34,7 @@ const SearchBar = ({ setSidebarOpen }) => {
             <input
               id="search-field"
               className="block h-full w-full border-0 bg-transparent py-0 pl-8 pr-0 text-white focus:ring-0 sm:text-sm"
-              placeholder="Search..."
+              placeholder="Rechercher..."
               type="search"
               name="search"
             />
