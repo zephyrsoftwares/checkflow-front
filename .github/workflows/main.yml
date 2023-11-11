@@ -38,12 +38,11 @@ jobs:
         id: bump_version
         uses: christian-draeger/increment-semantic-version@1.1.0
         with:
-          current-version: '0.1.0' # also accepted: 'v2.11.7-alpha.3' | '2.11.7-alpha3'
-          version-fragment: 'feature'
+          current-version: "0.1.0" # also accepted: 'v2.11.7-alpha.3' | '2.11.7-alpha3'
+          version-fragment: "feature"
       - name: Do something with your bumped release version
         run: echo ${{ steps.bump_version.outputs.next-version }}
 
-        
       - name: Install AWS CLI
         run: sudo apt-get install awscli
 
