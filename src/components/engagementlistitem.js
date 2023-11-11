@@ -37,10 +37,13 @@ const EngagementListItem = ({ deployment }) => {
           </div>
           <h2 className="min-w-0 text-sm font-semibold leading-6 text-white">
             <a href={deployment.href} className="flex gap-x-2">
+              {/* CLIENT NAME */}
               <span className="truncate font-light text-gray-200">
                 {deployment.teamName}
               </span>
+              {/* SEPARATOR */}
               <span className="text-gray-400">/</span>
+              {/* ENGAGEMENT NAME */}
               <span className="whitespace-nowrap">
                 {deployment.projectName}
               </span>

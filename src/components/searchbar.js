@@ -21,7 +21,7 @@ const SearchBar = ({ setSidebarOpen }) => {
         <form className="flex flex-1" action="#" method="GET">
           {/* SR LABEL */}
           <label htmlFor="search-field" className="sr-only">
-            Search
+            Rechercer
           </label>
 
           <div className="relative w-full">

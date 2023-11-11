@@ -16,21 +16,21 @@ const navigation = [
     name: "Accueil",
     href: "/",
     icon: HomeIcon,
-    current: false,
+    current: true,
     initial: "SS",
   },
   {
     id: 2,
     name: "Engagements",
-    href: "/",
+    href: "/engagements",
     icon: FolderIcon,
-    current: true,
+    current: false,
     initial: "SS",
   },
   {
     id: 3,
     name: "Activités",
-    href: "/activite",
+    href: "/activites",
     icon: StatusOnlineIcon,
     current: false,
     initial: "SS",
@@ -71,7 +71,7 @@ const clients = [
     id: 9,
     name: "Bain & Co",
     href: "#",
-    current: true,
+    current: false,
     initial: "BC",
   },
 ];
@@ -88,7 +88,7 @@ const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
         setSidebarOpen={setSidebarOpen}
       />
 
-      {/* NAVBAR */}
+      {/* NAVBAR WEB */}
       <NavbarWeb navigation={navigation} clients={clients} />
     </>
   );

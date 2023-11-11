@@ -45,6 +45,7 @@ const NavbarMobile = ({ show, navigation, clients, setSidebarOpen }) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
+                {/* CLOSE BUTTON */}
                 <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
                   <button
                     type="button"
@@ -56,7 +57,7 @@ const NavbarMobile = ({ show, navigation, clients, setSidebarOpen }) => {
                   </button>
                 </div>
               </Transition.Child>
-              {/* Sidebar component, swap this element with another sidebar if you like */}
+              {/* NAVBAR MOBILE */}
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 ring-1 ring-white/10">
                 {/* LOGO */}
                 <NavbarLogo />
@@ -69,7 +70,6 @@ const NavbarMobile = ({ show, navigation, clients, setSidebarOpen }) => {
                     <NavbarSection title={"Navigation"} itemlist={navigation} />
                     {/* CLIENTS SECTIONS */}
                     <NavbarSection title={"Clients"} itemlist={clients} />
-
                     {/* PROFILE SECTION */}
                     <NavbarProfileSection
                       image={
@@ -77,6 +77,7 @@ const NavbarMobile = ({ show, navigation, clients, setSidebarOpen }) => {
                       }
                       lastname={"ADLANI"}
                       firstname={"Ibrahim"}
+                      role={"Software Engineer"}
                     />
                   </ul>
                 </nav>

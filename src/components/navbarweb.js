@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import { NavbarLogo, NavbarProfileSection, NavbarSection } from "./index";
 
 const NavbarWeb = ({ navigation, clients }) => {
@@ -23,6 +24,7 @@ const NavbarWeb = ({ navigation, clients }) => {
               image={"https://avatars.githubusercontent.com/u/77414477?v=4"}
               lastname={"ADLANI"}
               firstname={"Ibrahim"}
+              role={"Software Engineer"}
             />
           </ul>
         </nav>

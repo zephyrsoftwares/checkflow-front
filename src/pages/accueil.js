@@ -14,7 +14,7 @@ const Accueil = () => {
       {/* LEFT PANEL */}
       <Navbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-      {/* LEFT PANEL */}
+      {/* MAIN PANEL */}
       <div className="xl:pl-72 h-full">
         <SearchBar setSidebarOpen={setSidebarOpen} />
         <EngagementSection />

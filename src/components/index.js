@@ -10,7 +10,7 @@ export { default as Navbar } from "./navbar";
 export { default as NavbarLogo } from "./navbarlogo";
 export { default as NavbarMobile } from "./navbarmobile";
 export { default as NavbarWeb } from "./navbarweb";
-export { default as NavigationItem } from "./navigationitem";
+export { default as NavbarItem } from "./navbaritem";
 export { default as NavbarSection } from "./navbarsection";
 export { default as NavbarProfileSection } from "./navbarprofilesection";
 

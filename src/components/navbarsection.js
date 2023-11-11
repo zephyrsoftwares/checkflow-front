@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { NavigationItem } from "./index";
+import { NavbarItem } from "./index";
 
 const NavbarSection = ({ title, itemlist }) => {
   return (
@@ -10,10 +10,10 @@ const NavbarSection = ({ title, itemlist }) => {
       <div className="text-xs font-semibold leading-6 text-gray-400">
         {title}
       </div>
-      {/* NAVIGATION ITEMS */}
+      {/* NAVIGATION LIST */}
       <ul className="mt-1">
         {itemlist.map((item) => (
-          <NavigationItem key={item.id} item={item} />
+          <NavbarItem key={item.id} item={item} />
         ))}
       </ul>
     </li>
