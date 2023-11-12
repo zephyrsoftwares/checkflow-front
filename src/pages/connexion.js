@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -12,10 +12,17 @@ import { useAuth } from "../contexts/AuthContext";
 const Connexion = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login, logout } = useAuth();
+  const { login, currentUser, loginWithGoogle } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // Redirect to home if user is already logged in
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser, navigate]);
 
   // login
   async function handleSubmit(e) {
@@ -26,26 +33,17 @@ const Connexion = () => {
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       navigate("/");
-    } catch (error) {
-      // Show the error message from Firebase
-      setError(error.message);
-    }
+    } catch (error) {}
 
     setLoading(false);
   }
 
-  // logout
-  async function handleLogout() {
-    setError("");
-
+  // login with Google
+  const handleGoogleLogin = async () => {
     try {
-      await logout();
-      navigate("/connexion");
-      setError("Vous êtes déconnecté");
-    } catch (error) {
-      setError(error.message); // Show the error message from Firebase
-    }
-  }
+      await loginWithGoogle();
+    } catch (error) {}
+  };
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -61,11 +59,6 @@ const Connexion = () => {
         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-white">
           Connectez-vous à votre compte
         </h2>
-        {error && (
-          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-red-600">
-            {error} {/* Show the error message from Firebase */}
-          </h2>
-        )}
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -129,6 +122,7 @@ const Connexion = () => {
             <Button
               type="submit"
               className="flex w-full justify-center bg-indigo-500 hover:bg-indigo-400 focus-visible:outline-indigo-500 text-white"
+              disabled={loading}
             >
               Se connecter
             </Button>
@@ -155,21 +149,10 @@ const Connexion = () => {
               as="a" // Specify that it should render as an anchor tag
               href="#"
               className="flex w-full items-center justify-center gap-3 bg-white text-gray-900 focus-visible:outline-[#1D9BF0]"
+              onClick={handleGoogleLogin}
             >
               <img className="h-5 w-5" src={google_icon} alt="Google" />
               Continuer avec Google
-            </Button>
-          </div>
-
-          {/* BUTTON LOGOUT */}
-          <div className="mt-6 grid grid-cols-1 gap-4">
-            <Button
-              as="a" // Specify that it should render as an anchor tag
-              href="#"
-              className="flex w-full items-center justify-center gap-3 bg-red-600 text-gray-900 focus-visible:outline-[#1D9BF0]"
-              onClick={handleLogout}
-            >
-              Logout
             </Button>
           </div>
         </div>
