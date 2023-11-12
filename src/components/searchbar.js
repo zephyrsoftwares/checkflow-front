@@ -1,10 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { MenuIcon, SearchIcon } from "@heroicons/react/solid";
+import { MenuIcon, SearchIcon, LogoutIcon } from "@heroicons/react/solid";
+
+import { useAuth } from "../contexts/AuthContext";
 
 const SearchBar = ({ setSidebarOpen }) => {
+  const { logout } = useAuth();
+
+  // logout
+  async function handleLogout() {
+    try {
+      await logout();
+      navigate("/connexion");
+    } catch (error) {
+      console.error(error.message); // Show the error message from Firebase
+    }
+  }
+
   return (
-    <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/5 bg-gray-900 px-4 shadow-sm sm:px-6 lg:px-8">
+    <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-6 border-b border-white/5 bg-gray-900 shadow-sm px-4 pe-0 sm:ps-6 lg:ps-8">
       {/* SIDEBAR TOGGLE */}
       <button
         type="button"
@@ -40,6 +54,15 @@ const SearchBar = ({ setSidebarOpen }) => {
             />
           </div>
         </form>
+      </div>
+      <div className="border-white/5 border-s h-full text-white flex items-center px-6">
+        <button>
+          <LogoutIcon
+            className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer"
+            aria-hidden="true"
+            onClick={handleLogout}
+          />
+        </button>
       </div>
     </div>
   );
