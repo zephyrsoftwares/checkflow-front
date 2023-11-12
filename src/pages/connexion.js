@@ -12,7 +12,7 @@ import { useAuth } from "../contexts/AuthContext";
 const Connexion = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login, currentUser } = useAuth();
+  const { login, currentUser, loginWithGoogle } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -41,6 +41,15 @@ const Connexion = () => {
 
     setLoading(false);
   }
+
+  // login with Google
+  const handleGoogleLogin = async () => {
+    try {
+      await loginWithGoogle();
+    } catch (error) {
+      console.error("Erreur de connexion avec Google: ", error);
+    }
+  };
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -151,6 +160,7 @@ const Connexion = () => {
               as="a" // Specify that it should render as an anchor tag
               href="#"
               className="flex w-full items-center justify-center gap-3 bg-white text-gray-900 focus-visible:outline-[#1D9BF0]"
+              onClick={handleGoogleLogin}
             >
               <img className="h-5 w-5" src={google_icon} alt="Google" />
               Continuer avec Google

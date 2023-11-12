@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import {
   auth,
   signInWithEmailAndPassword,
+  signInWithGoogle,
   db,
   storage,
 } from "../config/firebase";
@@ -19,10 +20,17 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
+  // Function to login with email and password
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
+  // Function to login with Google
+  function loginWithGoogle() {
+    return signInWithGoogle();
+  }
+
+  // Function to logout
   function logout() {
     return auth.signOut();
   }
@@ -66,6 +74,7 @@ export function AuthProvider({ children }) {
   const value = {
     currentUser,
     login,
+    loginWithGoogle,
     logout,
   };
 
