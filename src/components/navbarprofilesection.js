@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { useAuth } from "../contexts/AuthContext";
 
-const NavbarProfileSection = ({ image }) => {
+const NavbarProfileSection = ({}) => {
   const { currentUser } = useAuth();
 
   return (
@@ -15,7 +15,10 @@ const NavbarProfileSection = ({ image }) => {
         {/* AVATAR */}
         <img
           className="h-10 w-10 rounded-full bg-gray-800"
-          src={image}
+          src={
+            currentUser.profilePictureUrl ||
+            "./images/default_profile_picture.png"
+          }
           alt=""
         />
         <span className="sr-only">Votre profile</span>
