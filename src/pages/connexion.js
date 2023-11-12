@@ -59,9 +59,6 @@ const Connexion = () => {
         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-white">
           Connectez-vous à votre compte
         </h2>
-        {error && (
-          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-red-600"></h2>
-        )}
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
