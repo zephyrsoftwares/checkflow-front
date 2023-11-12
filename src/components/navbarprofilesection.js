@@ -42,8 +42,4 @@ const NavbarProfileSection = ({}) => {
   );
 };
 
-NavbarProfileSection.propTypes = {
-  image: PropTypes.string.isRequired,
-};
-
 export default NavbarProfileSection;

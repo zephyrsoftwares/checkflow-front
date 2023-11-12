@@ -40,8 +40,6 @@ export function AuthProvider({ children }) {
     const imagePath = `profilePictures/${userId}.jpeg`;
     const imageRef = ref(storage, imagePath);
 
-    console.log(imageRef);
-
     try {
       const url = await getDownloadURL(imageRef);
       return url;
