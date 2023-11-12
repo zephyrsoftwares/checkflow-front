@@ -3,9 +3,13 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import PropTypes from "prop-types";
 
+import { useAuth } from "../contexts/AuthContext";
+
 import { NavbarLogo, NavbarProfileSection, NavbarSection } from "./index";
 
 const NavbarMobile = ({ show, navigation, clients, setSidebarOpen }) => {
+  const { currentUser, logout } = useAuth();
+
   return (
     <Transition.Root show={show} as={Fragment}>
       <Dialog
@@ -75,8 +79,8 @@ const NavbarMobile = ({ show, navigation, clients, setSidebarOpen }) => {
                       image={
                         "https://avatars.githubusercontent.com/u/77414477?v=4"
                       }
-                      lastname={"ADLANI"}
-                      firstname={"Ibrahim"}
+                      lastname={""}
+                      firstname={"Alcide"}
                       role={"Software Engineer"}
                     />
                   </ul>

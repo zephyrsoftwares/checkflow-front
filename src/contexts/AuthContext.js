@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth, signInWithEmailAndPassword } from "../config/firebase";
+import { auth, signInWithEmailAndPassword, db } from "../config/firebase";
+import { doc, getDoc } from "firebase/firestore";
 import PropTypes from "prop-types";
 
 const AuthContext = React.createContext();
@@ -21,8 +22,18 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+    // onAuthStateChanged returns an unsubscriber
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        // get user data from firestore
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+        const userData = userDoc.exists() ? userDoc.data() : null;
+        console.log("user data : " + userData);
+        setCurrentUser({ ...user, ...userData });
+      } else {
+        setCurrentUser(null);
+      }
       setLoading(false);
     });
 

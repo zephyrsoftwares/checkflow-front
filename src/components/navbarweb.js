@@ -22,9 +22,6 @@ const NavbarWeb = ({ navigation, clients }) => {
             {/* PROFILE SECTION */}
             <NavbarProfileSection
               image={"https://avatars.githubusercontent.com/u/77414477?v=4"}
-              lastname={"ADLANI"}
-              firstname={"Ibrahim"}
-              role={"Software Engineer"}
             />
           </ul>
         </nav>
