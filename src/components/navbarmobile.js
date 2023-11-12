@@ -75,14 +75,7 @@ const NavbarMobile = ({ show, navigation, clients, setSidebarOpen }) => {
                     {/* CLIENTS SECTIONS */}
                     <NavbarSection title={"Clients"} itemlist={clients} />
                     {/* PROFILE SECTION */}
-                    <NavbarProfileSection
-                      image={
-                        "https://avatars.githubusercontent.com/u/77414477?v=4"
-                      }
-                      lastname={""}
-                      firstname={"Alcide"}
-                      role={"Software Engineer"}
-                    />
+                    <NavbarProfileSection />
                   </ul>
                 </nav>
               </div>

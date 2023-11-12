@@ -33,11 +33,7 @@ const Connexion = () => {
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       navigate("/");
-    } catch (error) {
-      // Show the error message from Firebase
-      setError(error.message);
-      console.error(error.message);
-    }
+    } catch (error) {}
 
     setLoading(false);
   }
@@ -46,9 +42,7 @@ const Connexion = () => {
   const handleGoogleLogin = async () => {
     try {
       await loginWithGoogle();
-    } catch (error) {
-      console.error("Erreur de connexion avec Google: ", error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -66,9 +60,7 @@ const Connexion = () => {
           Connectez-vous à votre compte
         </h2>
         {error && (
-          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-red-600">
-            {error} {/* Show the error message from Firebase */}
-          </h2>
+          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-red-600"></h2>
         )}
       </div>
 

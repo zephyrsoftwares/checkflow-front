@@ -12,9 +12,7 @@ const SearchBar = ({ setSidebarOpen }) => {
     try {
       await logout();
       navigate("/connexion");
-    } catch (error) {
-      console.error(error.message); // Show the error message from Firebase
-    }
+    } catch (error) {}
   }
 
   return (
