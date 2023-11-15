@@ -17,13 +17,6 @@ const Connexion = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Redirect to home if user is already logged in
-  useEffect(() => {
-    if (currentUser) {
-      navigate("/");
-    }
-  }, [currentUser, navigate]);
-
   // login
   async function handleSubmit(e) {
     e.preventDefault();
